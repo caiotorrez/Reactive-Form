@@ -1,20 +1,27 @@
 $(() => {
     setup();
-    validator();
+    handleChange();
 })
 
 function setup() {
     $('[label-error]').css({display: 'none', color: 'red'});
-    $('[error]').css({borderColor: 'red', }).next().slideDown('slow');
+    $('[error=true]').css({borderColor: 'red', }).next().slideDown('slow');
     $('[error=false]').css({borderColor: '', }).next().slideUp('slow');
 };
 
-async function validator(value = '') {
-    value = value.trim();
+const handleChange = (events = ['input[required]', 'select[required]']) => {
+    $(events.join()).keyup(async function() {
+        if (await validator(this.value, this.type)) {
+            $(this).attr('error', 'false');
+            setup();
+        } else {
+            $(this).attr('error', 'true');
+            setup();
+        }
+    });
+}
 
-    if (!value) {
-        return false;
-    }
+async function validator(value='', type='cep') {
 
     const validEmail = (email) => {
         const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -28,8 +35,25 @@ async function validator(value = '') {
         }
         const url = `https://viacep.com.br/ws/${cep}/json/`;
         let {erro} =  await $.ajax(url);
-        return erro;
+        return !erro;
     };
+    
+    value = value.trim();
+    switch(type) {
+
+        case 'text':
+            return !!value;
+        
+        case 'email':
+            return validEmail(value);
+        
+        case 'cep':
+            return await validCEP(value);
+        
+        default:
+            break;
+    }
+
 
 }
 
