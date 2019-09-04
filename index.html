@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Teste</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src='main.js'></script>
+    
 </head>
+
 <body>
-    <input error required>
-    <span label-error>Error</span>
+    <form>
+        <h1>Basic Form</h1>
+
+        <label for="name">Name</label>
+        <input id="name" placeholder="Name" error required>
+        <span label-error>Field name invalid</span>
+
+        <label for="email">E-mail</label>
+        <input id="email" type="email" placeholder="E-mail" error required>
+        <span label-error>Field email invalid</span>
+
+        <label for="cep">CEP</label>
+        <input id="cep" type="cep" placeholder="CEP" error required>
+        <span label-error>Field CEP invalid</span>
+
+        <label for="cpf">CPF</label>
+        <input id="cpf" type="cpf" placeholder="CPF" error required>
+        <span label-error>Field CPF invalid</span>
+
+        <label for="cnpj">CNPJ</label>
+        <input id="cnpj" type="cnpj" placeholder="CNPJ" error required>
+        <span label-error>Field CNPJ invalid</span>
+
+    </form>
+
 </body>
+
 </html>
