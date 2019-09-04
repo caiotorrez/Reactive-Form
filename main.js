@@ -1,15 +1,15 @@
 $(() => {
-    setup();
     handleChange();
 })
 
 function setup() {
     $('[label-error]').css({display: 'none', color: 'red'});
-    $('[error=true]').css({borderColor: 'red', }).next().slideDown('slow');
-    $('[error=false]').css({borderColor: '', }).next().slideUp('slow');
+    $('[error=true]').css({borderColor: 'red', }).next().slideDown();
+    $('[error=false]').css({borderColor: '', }).next().slideUp();
 };
 
 const handleChange = (events = ['input[required]', 'select[required]']) => {
+    setup();
     $(events.join()).keyup(async function() {
         if (await validator(this.value, this.type)) {
             $(this).attr('error', 'false');
@@ -21,7 +21,7 @@ const handleChange = (events = ['input[required]', 'select[required]']) => {
     });
 }
 
-async function validator(value='', type='cep') {
+async function validator(value='', type='text') {
 
     const validEmail = (email) => {
         const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
