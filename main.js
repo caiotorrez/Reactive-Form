@@ -11,7 +11,7 @@ function setup() {
 const handleChange = (events = ['input[required]', 'select[required]']) => {
     setup();
     $(events.join()).keyup(async function() {
-        if (await validator(this.value, this.type)) {
+        if (await validator(this.value, $(this).attr('type'))) {
             $(this).attr('error', 'false');
             setup();
         } else {
@@ -30,13 +30,23 @@ async function validator(value='', type='text') {
 
     const validCEP = async (cep) => {
         cep = cep.replace('-', '');
-        if (cep < 8) {
+        if (cep.length < 8) {
             return false; 
         }
         const url = `https://viacep.com.br/ws/${cep}/json/`;
         let {erro} =  await $.ajax(url);
         return !erro;
     };
+
+    const validCPF = (cpf) => {
+        cpf = cpf.replace(/\D/g, cpf);
+        return cpf.length === 11;
+    }
+
+    const validCNPJ = (cnpj) => {
+        cnpj = cnpj.replace(/\D/g, cnpj);
+        return cnpj.length === 12;
+    }
     
     value = value.trim();
     switch(type) {
@@ -49,14 +59,22 @@ async function validator(value='', type='text') {
         
         case 'cep':
             return await validCEP(value);
+
+        case 'cpf':
+            return validCPF(value);
+        
+        case 'cnpj':
+            return validCNPJ(value);
         
         default:
             break;
     }
-
-
+    
 }
 
-const isValid = () => {
-    // test all inputs and return true or false
+function isValid(form) {
+    $(form).find('input[required], select[required]').each(function() {
+        $(this).keyup();
+    });
+    return !$('[error=true]').length;
 }
