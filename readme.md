@@ -9,7 +9,6 @@
 - For this, you need to put 'label-error' in property of span after input with your custom message.
 See example: 
    <pre>
-
  ```html
     <label  for="name">Name</label>
 	<input  id="name"  placeholder="Name"  required>
