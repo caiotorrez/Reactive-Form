@@ -15,30 +15,32 @@
 </head>
 
 <body>
-    <form>
+    <form onsubmit="return isValid(this)">
         <h1>Basic Form</h1>
 
         <label for="name">Name</label>
-        <input id="name" placeholder="Name" error required>
+        <input id="name" placeholder="Name" required>
         <span label-error>Field name invalid</span>
 
         <label for="email">E-mail</label>
-        <input id="email" type="email" placeholder="E-mail" error required>
+        <input id="email" type="email" placeholder="E-mail" required>
         <span label-error>Field email invalid</span>
 
         <label for="cep">CEP</label>
-        <input id="cep" type="cep" placeholder="CEP" error required>
+        <input id="cep" type="cep" placeholder="CEP" required>
         <span label-error>Field CEP invalid</span>
 
         <label for="cpf">CPF</label>
-        <input id="cpf" type="cpf" placeholder="CPF" error required>
+        <input id="cpf" type="cpf" placeholder="CPF" required>
         <span label-error>Field CPF invalid</span>
 
         <label for="cnpj">CNPJ</label>
-        <input id="cnpj" type="cnpj" placeholder="CNPJ" error required>
+        <input id="cnpj" type="cnpj" placeholder="CNPJ" required>
         <span label-error>Field CNPJ invalid</span>
 
+        <button type="submit">Submit</button>
     </form>
+    
 
 </body>
 
