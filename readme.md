@@ -8,13 +8,12 @@
 
 - For this, you need to put 'label-error' in property of span after input with your custom message.
 See example: 
-   <pre>
- ```html
+
+```html
     <label  for="name">Name</label>
 	<input  id="name"  placeholder="Name"  required>
 	<span  label-error>Field name invalid</span>
-   ```
-   </pre>
+```
 
 Enjoy!
 By [Caio Torres](https://github.com/caiotorrez)
