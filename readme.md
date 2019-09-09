@@ -10,7 +10,7 @@
 See example: 
 
 ```html
-    <label  for="name">Name</label>
+    	<label  for="name">Name</label>
 	<input  id="name"  placeholder="Name"  required>
 	<span  label-error>Field name invalid</span>
 ```
